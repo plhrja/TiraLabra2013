@@ -1,27 +1,28 @@
 package MyArrayList;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class MyArrayList<E> implements Serializable, Collection<E>, List<E>, Iterable<E>{
-    
-    private Object[] array;
+public class MyArrayList<E> implements Serializable, Collection<E>, List<E>, Iterable<E> {
+
+    private E[] array;
     private int capacity;
     private int size;
-    
-    public MyArrayList(int capacity){
-        this.capacity = capacity;
+
+    public MyArrayList(int capacity) {
+        this.capacity = Math.abs(capacity);
         this.size = 0;
-        this.array = new Object[capacity];
+        this.array = (E[]) new Object[capacity];
     }
-    
-    public MyArrayList(){
+
+    public MyArrayList() {
         this(50);
     }
-    
+
     @Override
     public int size() {
         return this.size;
@@ -34,8 +35,9 @@ public class MyArrayList<E> implements Serializable, Collection<E>, List<E>, Ite
 
     @Override
     public boolean contains(Object o) {
-        for (Object obj : this.array) {
-            if(o.equals(obj)){
+        o = (E) o;
+        for (E e : this.array) {
+            if (o.equals(e)) {
                 return true;
             }
         }
@@ -44,28 +46,35 @@ public class MyArrayList<E> implements Serializable, Collection<E>, List<E>, Ite
 
     @Override
     public Iterator<E> iterator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new MyArrayListIterator<>(this, 0);
     }
 
     @Override
     public Object[] toArray() {
-        return array;
+        Object[] arrayToReturn = new Object[this.size];
+        System.arraycopy(this.array, 0, arrayToReturn, 0, this.size);
+        return arrayToReturn;
     }
 
     @Override
     public <T> T[] toArray(T[] a) {
-        if(a.length < this.size){
-            a = (T[]) new Object[this.size()];
+        T[] newArray = (this.size == 0)
+                ? (T[]) Array.newInstance(a.getClass().getComponentType(), 0) : (a.length < this.size)
+                ? (T[]) Array.newInstance(a.getClass().getComponentType(), this.size) : a;
+
+        if (newArray.length == 0) {
+            return newArray;
         }
+
         for (int i = 0; i < this.size; i++) {
-            a[i] = (T) this.array[i];
+            newArray[i] = (T) this.array[i];
         }
-        return a;
+        return newArray;
     }
 
     @Override
     public boolean add(E e) {
-        if(this.size == this.array.length){
+        if (this.size == this.array.length) {
             this.array = copyAndEnlarge(this.array);
         }
         this.array[this.size] = e;
@@ -75,10 +84,10 @@ public class MyArrayList<E> implements Serializable, Collection<E>, List<E>, Ite
 
     @Override
     public boolean remove(Object o) {
-        if(!this.contains(o)){
+        if (!this.contains(o)) {
             return false;
         }
-        shiftLeft(this.array, this.indexOf(o));
+        shiftLeft(this.array, this.indexOf((E) o));
         this.size--;
         return true;
     }
@@ -86,7 +95,7 @@ public class MyArrayList<E> implements Serializable, Collection<E>, List<E>, Ite
     @Override
     public boolean containsAll(Collection<?> c) {
         for (Object obj : c) {
-            if(!this.contains(obj)){
+            if (!this.contains(obj)) {
                 return false;
             }
         }
@@ -98,14 +107,14 @@ public class MyArrayList<E> implements Serializable, Collection<E>, List<E>, Ite
         for (E e : c) {
             this.add(e);
         }
-        return true;
+        return !c.isEmpty();
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
         boolean altered = false;
         for (Object obj : c) {
-            if(this.remove((E) obj)) {
+            if (this.remove(obj)) {
                 altered = true;
             }
         }
@@ -116,7 +125,7 @@ public class MyArrayList<E> implements Serializable, Collection<E>, List<E>, Ite
     public boolean retainAll(Collection<?> c) {
         boolean altered = false;
         for (Object obj : this.array) {
-            if(!c.contains(obj)){
+            if (!c.contains(obj)) {
                 this.remove((E) obj);
                 altered = true;
             }
@@ -126,33 +135,50 @@ public class MyArrayList<E> implements Serializable, Collection<E>, List<E>, Ite
 
     @Override
     public void clear() {
-        this.array = new Object[this.capacity];
+        this.array = (E[]) new Object[this.capacity];
         this.size = 0;
     }
 
     @Override
     public boolean addAll(int index, Collection<? extends E> c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.array.length <= this.size + c.size()) {
+            this.array = copyAndEnlarge(this.array, c.size() + this.capacity);
+        }
+        shiftRight(this.array, index, c.size());
+        System.arraycopy(c.toArray(), 0, this.array, index, c.size());
+        return !c.isEmpty();
     }
 
     @Override
     public E get(int index) {
+        if (!indexInsideBounds(index)) {
+            throw new IndexOutOfBoundsException("Index out of bounds!");
+        }
         return (E) this.array[index];
     }
 
     @Override
     public E set(int index, E element) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (!indexInsideBounds(index)) {
+            throw new IndexOutOfBoundsException("Index out of bounds!");
+        }
+        E e = (E) this.array[index];
+        this.array[index] = element;
+        return e;
     }
 
     @Override
     public void add(int index, E element) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.size == this.array.length) {
+            this.array = copyAndEnlarge(this.array);
+        }
+        shiftRight(this.array, index, 1);
+        this.array[index] = element;
     }
 
     @Override
     public E remove(int index) {
-        if(!indexInsideBounds(index)){
+        if (!indexInsideBounds(index)) {
             throw new IndexOutOfBoundsException("Index out of bounds!");
         }
         E atIndex = this.get(index);
@@ -162,59 +188,74 @@ public class MyArrayList<E> implements Serializable, Collection<E>, List<E>, Ite
 
     @Override
     public int indexOf(Object o) {
+        o = (E) o;
         for (int i = 0; i < this.size; i++) {
-            if(this.array[i].equals(o))
+            if (this.get(i).equals(o)) {
                 return i;
+            }
         }
         return -1;
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        o = (E) o;
+        for (int i = this.size; i > -1; i--) {
+            if (this.get(i).equals(o)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
     public ListIterator<E> listIterator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new MyArrayListIterator<>(this, 0);
     }
 
     @Override
     public ListIterator<E> listIterator(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new MyArrayListIterator<>(this, index);
     }
 
     @Override
     public List<E> subList(int fromIndex, int toIndex) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    public static void main(String[] args) {
-        MyArrayList<String> ar = new MyArrayList<>(10);
-        ar.add("asdasd");
-        ar.add("kikkeli");
-        ar.add("ahahahahaha");
-        System.out.println(ar.get(1));
-        ar.remove("asdasd");
-        System.out.println(ar.get(1));
+        int length = toIndex - fromIndex;
+        if (length < 1) {
+            return null;
+        }
+        MyArrayList subList = new MyArrayList(length + capacity);
+
+        for (int i = fromIndex; i < toIndex; i++) {
+            subList.add(this.get(i));
+        }
+        return subList;
     }
 
-    private Object[] copyAndEnlarge(Object[] array) {
-        
-        Object[] newArray = new Object[array.length + this.capacity];
+    private E[] copyAndEnlarge(E[] array) {
+        return copyAndEnlarge(array, this.capacity);
+    }
+
+    private E[] copyAndEnlarge(E[] array, int i) {
+        E[] newArray = (E[]) Array.newInstance(array.getClass().getComponentType(), array.length + i);
         System.arraycopy(array, 0, newArray, 0, array.length);
-        
         return newArray;
     }
 
-    private void shiftLeft(Object[] array, int indexOf) {
-        for (int i = indexOf; i < array.length - 1; i++) {
+    private void shiftLeft(E[] array, int indexOf) {
+        for (int i = indexOf; i < this.size - 1; i++) {
             array[i] = array[i + 1];
+        }
+    }
+
+    private void shiftRight(E[] array, int index, int size) {
+        for (int i = index; i< this.size; i++) {
+            array[i + size] = array[i];
+
         }
     }
 
     private boolean indexInsideBounds(int index) {
         return index > -1 && index < this.size;
     }
-
 }
