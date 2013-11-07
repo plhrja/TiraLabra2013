@@ -3,15 +3,14 @@ package MyArrayList;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
-
 public class MyArrayListIterator<E> implements ListIterator<E> {
-    
+
     private MyArrayList arrayList;
     private int position;
     private int leftBoundary;
     private boolean manipulateable;
-    
-    public MyArrayListIterator(MyArrayList list, int index){
+
+    public MyArrayListIterator(MyArrayList list, int index) {
         this.arrayList = list;
         this.position = index - 1;
         this.leftBoundary = index;
@@ -25,16 +24,12 @@ public class MyArrayListIterator<E> implements ListIterator<E> {
 
     @Override
     public E next() {
-        E elem = null;
-        try{
-            position++;
-            this.manipulateable = true;
-            elem = (E) this.arrayList.get(position);
-        } catch(NoSuchElementException e){
-            position--;
-            this.manipulateable = false;
-            System.err.println("No more elements to iterate!");
+        if (this.nextIndex() == this.arrayList.size()) {
+            throw new NoSuchElementException();
         }
+        position++;
+        E elem = (E) this.arrayList.get(position);
+        this.manipulateable = true;
         return elem;
     }
 
@@ -45,57 +40,48 @@ public class MyArrayListIterator<E> implements ListIterator<E> {
 
     @Override
     public E previous() {
-        E elem = null;
-        try{
-            position--;
-            elem = (E) this.arrayList.get(position);
-            this.manipulateable = true;
-        } catch(NoSuchElementException e){
-            position++;
-            this.manipulateable = false;
-            System.err.println("No more elements to iterate!");
+        if (this.previousIndex() < this.leftBoundary) {
+            throw new NoSuchElementException();
         }
+        position--;
+        E elem = (E) this.arrayList.get(position);
+        this.manipulateable = true;
         return elem;
     }
 
     @Override
     public int nextIndex() {
-        return this.position++;
+        return this.position + 1;
     }
 
     @Override
     public int previousIndex() {
-        return this.position--;
+        return this.position - 1;
     }
 
     @Override
     public void remove() {
-        if(this.manipulateable){
-            this.arrayList.remove(position);
-            this.manipulateable = false;
-        } else {
-            System.err.println("Illegal State!");
+        if (!this.manipulateable) {
+            throw new IllegalStateException("Illegal state, see documentation!");
         }
+        this.arrayList.remove(position);
+        this.manipulateable = false;
     }
 
     @Override
     public void set(E e) {
-        if(this.manipulateable){
-            this.arrayList.set(position, e);
-        } else {
-            System.err.println("Illegal State!");
+        if (!this.manipulateable) {
+            throw new IllegalStateException("Illegal state, see documentation!");
         }
+        this.arrayList.set(position, e);
     }
 
     @Override
     public void add(E e) {
-        if(this.manipulateable){
-            this.arrayList.add(position, e);
-            this.manipulateable = false;
-        } else {
-            System.err.println("Illegal State");
+        if (!this.manipulateable) {
+            throw new IllegalStateException("Illegal state, see documentation!");
         }
+        this.arrayList.add(position, e);
+        this.manipulateable = false;
     }
-
 }
-

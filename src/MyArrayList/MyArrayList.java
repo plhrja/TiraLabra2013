@@ -65,7 +65,6 @@ public class MyArrayList<E> implements Serializable, Collection<E>, List<E>, Ite
         if (newArray.length == 0) {
             return newArray;
         }
-
         for (int i = 0; i < this.size; i++) {
             newArray[i] = (T) this.array[i];
         }
@@ -84,7 +83,7 @@ public class MyArrayList<E> implements Serializable, Collection<E>, List<E>, Ite
 
     @Override
     public boolean remove(Object o) {
-        if (!this.contains(o)) {
+        if (!this.contains((E) o)) {
             return false;
         }
         shiftLeft(this.array, this.indexOf((E) o));
@@ -95,7 +94,7 @@ public class MyArrayList<E> implements Serializable, Collection<E>, List<E>, Ite
     @Override
     public boolean containsAll(Collection<?> c) {
         for (Object obj : c) {
-            if (!this.contains(obj)) {
+            if (!this.contains((E) obj)) {
                 return false;
             }
         }
@@ -114,7 +113,7 @@ public class MyArrayList<E> implements Serializable, Collection<E>, List<E>, Ite
     public boolean removeAll(Collection<?> c) {
         boolean altered = false;
         for (Object obj : c) {
-            if (this.remove(obj)) {
+            if (this.remove((E)obj)) {
                 altered = true;
             }
         }
@@ -241,7 +240,7 @@ public class MyArrayList<E> implements Serializable, Collection<E>, List<E>, Ite
         System.arraycopy(array, 0, newArray, 0, array.length);
         return newArray;
     }
-
+ 
     private void shiftLeft(E[] array, int indexOf) {
         for (int i = indexOf; i < this.size - 1; i++) {
             array[i] = array[i + 1];
