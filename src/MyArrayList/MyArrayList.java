@@ -168,11 +168,16 @@ public class MyArrayList<E> implements Serializable, Collection<E>, List<E>, Ite
 
     @Override
     public void add(int index, E element) {
-        if (this.size == this.array.length) {
-            this.array = copyAndEnlarge(this.array);
+        if (!indexInsideBounds(index)) {
+            throw new IndexOutOfBoundsException("Index out of bounds!");
         }
+        if(this.size == this.array.length){
+            copyAndEnlarge(this.array);
+        }
+        this.array = copyAndEnlarge(this.array);
         shiftRight(this.array, index, 1);
         this.array[index] = element;
+        this.size++;
     }
 
     @Override
@@ -248,7 +253,7 @@ public class MyArrayList<E> implements Serializable, Collection<E>, List<E>, Ite
     }
 
     private void shiftRight(E[] array, int index, int size) {
-        for (int i = index; i< this.size; i++) {
+        for (int i = this.size-1; i > index - 1; i--) {
             array[i + size] = array[i];
 
         }

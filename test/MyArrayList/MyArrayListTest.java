@@ -32,6 +32,32 @@ public class MyArrayListTest {
         
     }
     
+    @Test
+    public void testAddingToAnIndex(){
+        initStringListWithValues();
+        initIntegerListWithValues();
+        
+        stringList.add(0, "new first");
+        integerList.add(0, 11);
+        String index0String = stringList.get(0);
+        int index0Integer = integerList.get(0);
+        
+        assertEquals("Adding a string to first index is first", "new first", index0String);
+        assertEquals("Adding a integer to first index is first", 11, index0Integer);
+        
+        stringList.add(2, "new second");
+        integerList.add(2, 12);
+        String index2String = stringList.get(2);
+        int index2Integer = integerList.get(2);
+        
+        assertEquals("Adding a string to third index is third", "new second", index2String);
+        assertEquals("Adding a integer to third index is third", 12, index2Integer);
+        
+        assertArrayEquals(new String[]{"new first", "first", "new second", "second", "third"},
+                stringList.toArray());
+        assertArrayEquals(new Integer[]{11, 1, 12, 2, 3}, integerList.toArray());
+    }
+    
     @Test(expected=IndexOutOfBoundsException.class)
     public void gettingOverBoundaryThrowsException(){
         stringList.get(CAPACITY);
