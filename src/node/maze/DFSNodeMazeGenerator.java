@@ -1,7 +1,6 @@
 package node.maze;
 
 import MyArrayList.MyArrayList;
-import java.util.HashSet;
 import java.util.Random;
 import node.Node;
 import node.grid.NodeGrid;
@@ -31,6 +30,8 @@ public class DFSNodeMazeGenerator implements NodeMazeGenerator {
 
         MyArrayList<Node> neighbourNodes = new MyArrayList<>();
         MazeTools.addNeighboursToCoordinates(nextNode.getRow(), nextNode.getColumn(), neighbourNodes, grid);
+        System.out.println();
+        nodeGridPrinter.printGrid(grid);
         
         while(!neighbourNodes.isEmpty()){
             Node node = neighbourNodes.get(new Random().nextInt(neighbourNodes.size()));
