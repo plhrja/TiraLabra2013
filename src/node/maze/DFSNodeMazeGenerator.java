@@ -30,13 +30,11 @@ public class DFSNodeMazeGenerator implements NodeMazeGenerator {
 
         MyArrayList<Node> neighbourNodes = new MyArrayList<>();
         MazeTools.addNeighboursToCoordinates(nextNode.getRow(), nextNode.getColumn(), neighbourNodes, grid);
-        System.out.println();
-        nodeGridPrinter.printGrid(grid);
-        
-        while(!neighbourNodes.isEmpty()){
+
+        while (!neighbourNodes.isEmpty()) {
             Node node = neighbourNodes.get(new Random().nextInt(neighbourNodes.size()));
-            DFSThroughGrid(grid, 
-                    neighbourNodes.get(new Random().nextInt(neighbourNodes.size())),
+            DFSThroughGrid(grid,
+                    node,
                     nextNode);
             neighbourNodes.remove(node);
         }
@@ -57,7 +55,7 @@ public class DFSNodeMazeGenerator implements NodeMazeGenerator {
     public NodeGrid generateLargeMaze() {
         return generateDFSMaze(NodeGridGenerator.generateLargeGrid());
     }
-    
+
     //Test-main
     public static void main(String[] args) {
         nodeGridPrinter.printGrid(new DFSNodeMazeGenerator().generateSmallMaze());

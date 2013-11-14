@@ -19,8 +19,10 @@ public class PrimNodeMazeGenerator implements NodeMazeGenerator {
         MazeTools.addNeighboursToCoordinates(row, col, neighbourNodes, grid);
 
         while (!neighbourNodes.isEmpty()) {
-            Node node = (Node) neighbourNodes.toArray()[rand.nextInt(neighbourNodes.size())];
-            MazeTools.connectNeighbourToMaze(node, grid);
+            Node node = neighbourNodes.get(rand.nextInt(neighbourNodes.size()));
+            if (!node.isInMaze()) {
+                MazeTools.connectNeighbourToMaze(node, grid);
+            }
             MazeTools.addNeighboursToCoordinates(node.getRow(), node.getColumn(), neighbourNodes, grid);
             neighbourNodes.remove(node);
         }
@@ -42,10 +44,9 @@ public class PrimNodeMazeGenerator implements NodeMazeGenerator {
     public NodeGrid generateLargeMaze() {
         return generatePrimMaze(NodeGridGenerator.generateLargeGrid());
     }
-    
+
     //Test-main
     public static void main(String[] args) {
         nodeGridPrinter.printGrid(new PrimNodeMazeGenerator().generateSmallMaze());
     }
-    
 }

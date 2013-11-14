@@ -8,23 +8,19 @@ import node.grid.NodeGrid;
 public class MazeTools {
 
     public static void addNeighboursToCoordinates(int row, int col, MyArrayList<Node> neighbourNodes, NodeGrid grid) {
-        if (row + 1 < grid.getRowLength() && !grid.getNode(row + 1, col).isInMaze() &&
-                !neighbourNodes.contains(grid.getNode(row + 1, col))) {
+        if (row + 1 < grid.getRowLength() && !grid.getNode(row + 1, col).isInMaze()) {
             neighbourNodes.add(grid.getNode(row + 1, col));
             grid.getNode(row + 1, col).addHasInMazeNeighboursIn('N');
         }
-        if (col + 1 < grid.getColumnLength() && !grid.getNode(row, col + 1).isInMaze() &&
-                !neighbourNodes.contains(grid.getNode(row, col + 1))) {
+        if (col + 1 < grid.getColumnLength() && !grid.getNode(row, col + 1).isInMaze()) {
             neighbourNodes.add(grid.getNode(row, col + 1));
             grid.getNode(row, col + 1).addHasInMazeNeighboursIn('W');
         }
-        if (row - 1 > -1 && !grid.getNode(row - 1, col).isInMaze() &&
-                !neighbourNodes.contains(grid.getNode(row - 1, col))) {
+        if (row - 1 > -1 && !grid.getNode(row - 1, col).isInMaze()) {
             neighbourNodes.add(grid.getNode(row - 1, col));
             grid.getNode(row - 1, col).addHasInMazeNeighboursIn('S');
         }
-        if (col - 1 > -1 && !grid.getNode(row, col - 1).isInMaze() &&
-                !neighbourNodes.contains(grid.getNode(row, col - 1))) {
+        if (col - 1 > -1 && !grid.getNode(row, col - 1).isInMaze()) {
             neighbourNodes.add(grid.getNode(row, col - 1));
             grid.getNode(row, col - 1).addHasInMazeNeighboursIn('E');
         }
