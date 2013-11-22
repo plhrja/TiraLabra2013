@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class MyArrayList<E> implements Serializable, Collection<E>, List<E>, Iterable<E> {
+public class MyArrayList<E> implements Serializable, List<E>, Iterable<E> {
 
     private E[] array;
     private int capacity;

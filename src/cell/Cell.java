@@ -1,5 +1,6 @@
 package cell;
 
+import MyArrayList.MyArrayList;
 import MyPriorityQueue.MyPriorityQueue;
 import java.util.Arrays;
 
@@ -12,15 +13,11 @@ public class Cell implements Comparable<Cell>{
     private int column;
     private int costToBeginning;
     private int costToFinish;
+    private MyArrayList<Character> inMazeNeighbours;
+    private boolean inMaze;
     
     public Cell(){
-        this.row = -1;
-        this.column = -1;
-        this.solid = true;
-        this.costToBeginning = Integer.MAX_VALUE;
-        this.costToFinish = Integer.MAX_VALUE;
-        this.parentCell = null;
-        this.visited = false;
+        this(-1,-1);
     }
 
     public Cell(int row, int column) {
@@ -31,15 +28,8 @@ public class Cell implements Comparable<Cell>{
         this.costToFinish = Integer.MAX_VALUE;
         this.parentCell = null;
         this.visited = false;
-    }
-
-    public Cell(int row, int column, boolean solid) {
-        this.row = row;
-        this.column = column;
-        this.solid = solid;
-        this.costToBeginning = Integer.MAX_VALUE;
-        this.costToFinish = Integer.MAX_VALUE;
-        this.parentCell = null;
+        this.inMazeNeighbours = new MyArrayList<>();
+        this.inMaze = false;
     }
 
     public boolean isSolid() {
@@ -89,10 +79,29 @@ public class Cell implements Comparable<Cell>{
     public void setCostToFinish(int distToFinish) {
         this.costToFinish = distToFinish;
     }
-
+    
     public int getTotalCost() {
         return (this.getCostToBeginning() == Integer.MAX_VALUE || this.getCostToFinish() == Integer.MAX_VALUE) ?
                 Integer.MAX_VALUE : this.getCostToBeginning() + this.getCostToFinish();
+    }
+    
+    public boolean isInMaze() {
+        return inMaze;
+    }
+
+    public void InMaze(boolean inMaze) {
+        this.inMaze = inMaze;
+        if(inMaze) {
+            inMazeNeighbours.removeAll(inMazeNeighbours);
+        }
+    }
+    
+    public MyArrayList<Character> getHasInMazeNeighboursIn() {
+        return inMazeNeighbours;
+    }
+
+    public void addHasInMazeNeighboursIn(char c) {
+        this.inMazeNeighbours.add(c);
     }
 
     @Override

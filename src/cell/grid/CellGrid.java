@@ -28,7 +28,7 @@ public class CellGrid implements Iterable<Cell>{
 
         for (int i = 0; i < this.rowLength; i++) {
             for (int j = 0; j < this.columnLength; j++) {
-                this.grid[i][j] = new Cell(i, j, solid);
+                this.grid[i][j] = new Cell(i, j);
             }
         }
     }
