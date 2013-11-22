@@ -63,7 +63,7 @@ public class MPVGUI extends JFrame {
 
             @Override
             public void run() {
-                MPVGUI mpvguI = new MPVGUI();
+                new MPVGUI();
             }
         });
     }
