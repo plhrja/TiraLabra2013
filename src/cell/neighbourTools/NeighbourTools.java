@@ -13,22 +13,22 @@ public class NeighbourTools {
                 && col < grid.getColumnLength() - 1;
     }
 
-    public static void addNeighboursToCoordinates(int row, int col, MyArrayList<Cell> neighbourCells, CellGrid grid) {
-        if (insideBoundaries(row + 2, col, grid) && !grid.getCell(row + 2, col).isInMaze()) {
-            neighbourCells.add(grid.getCell(row + 2, col));
-            grid.getCell(row + 2, col).addHasInMazeNeighboursIn('N');
+    public static void addInMazeNeighboursToCoordinates(int row, int col, MyArrayList<Cell> neighbourCells, CellGrid grid, int steps) {
+        if (insideBoundaries(row + steps, col, grid) && !grid.getCell(row + steps, col).isInMaze()) {
+            neighbourCells.add(grid.getCell(row + steps, col));
+            grid.getCell(row + steps, col).addHasInMazeNeighboursIn('N');
         }
-        if (insideBoundaries(row, col + 2, grid) && !grid.getCell(row, col + 2).isInMaze()) {
-            neighbourCells.add(grid.getCell(row, col + 2));
-            grid.getCell(row, col + 2).addHasInMazeNeighboursIn('W');
+        if (insideBoundaries(row, col + steps, grid) && !grid.getCell(row, col + steps).isInMaze()) {
+            neighbourCells.add(grid.getCell(row, col + steps));
+            grid.getCell(row, col + steps).addHasInMazeNeighboursIn('W');
         }
-        if (insideBoundaries(row - 2, col, grid) && !grid.getCell(row - 2, col).isInMaze()) {
-            neighbourCells.add(grid.getCell(row - 2, col));
-            grid.getCell(row - 2, col).addHasInMazeNeighboursIn('S');
+        if (insideBoundaries(row - steps, col, grid) && !grid.getCell(row - steps, col).isInMaze()) {
+            neighbourCells.add(grid.getCell(row - steps, col));
+            grid.getCell(row - steps, col).addHasInMazeNeighboursIn('S');
         }
-        if (insideBoundaries(row, col - 2, grid) && !grid.getCell(row, col - 2).isInMaze()) {
-            neighbourCells.add(grid.getCell(row, col - 2));
-            grid.getCell(row, col - 2).addHasInMazeNeighboursIn('E');
+        if (insideBoundaries(row, col - steps, grid) && !grid.getCell(row, col - steps).isInMaze()) {
+            neighbourCells.add(grid.getCell(row, col - steps));
+            grid.getCell(row, col - steps).addHasInMazeNeighboursIn('E');
         }
     }
 
@@ -63,5 +63,41 @@ public class NeighbourTools {
         int col = (cell1.getColumn()- cell2.getColumn()== 0)
                 ? cell1.getColumn(): Math.min(cell1.getColumn(), cell2.getColumn()) + 1;
         grid.getCell(row, col).isSolid(false);
+    }
+    
+    public static MyArrayList getOpenNeighboursToCoordinates(CellGrid grid, Cell parent) {
+        MyArrayList<Cell> openNeighbours = new MyArrayList<>();
+        int row = parent.getRow();
+        int column = parent.getColumn();
+
+        Cell south = grid.getCell(row + 1, column);
+        Cell east = grid.getCell(row, column + 1);
+        Cell north = grid.getCell(row - 1, column);
+        Cell west = grid.getCell(row, column - 1);
+
+
+        if (south != null && !south.isSolid()) {
+            setDistAndAddParent(south, parent, openNeighbours);
+        }
+        if (east != null && !east.isSolid()) {
+            setDistAndAddParent(east, parent, openNeighbours);
+        }
+        if (north != null && !north.isSolid()) {
+            setDistAndAddParent(north, parent, openNeighbours);
+        }
+        if (west != null && !west.isSolid()) {
+            setDistAndAddParent(west, parent, openNeighbours);
+        }
+
+        return openNeighbours;
+    }
+    
+    private static void setDistAndAddParent(Cell cellToAdd, Cell parent, MyArrayList<Cell> openNeighbours) {
+        double newCost = parent.getCostToBeginning() + 1;
+        if ((cellToAdd.getParentCell() == null) || newCost < cellToAdd.getCostToBeginning()) {
+            cellToAdd.setCostToBeginning(newCost);
+            cellToAdd.setParentCell(parent);
+            openNeighbours.add(cellToAdd);
+        }
     }
 }

@@ -11,8 +11,8 @@ public class Cell implements Comparable<Cell>{
     private Cell parentCell;
     private int row;
     private int column;
-    private int costToBeginning;
-    private int costToFinish;
+    private double costToBeginning;
+    private double costToFinish;
     private MyArrayList<Character> inMazeNeighbours;
     private boolean inMaze;
     
@@ -64,23 +64,23 @@ public class Cell implements Comparable<Cell>{
         this.parentCell = parentCell;
     }
 
-    public int getCostToBeginning() {
+    public double getCostToBeginning() {
         return costToBeginning;
     }
 
-    public void setCostToBeginning(int distToBeginning) {
+    public void setCostToBeginning(double distToBeginning) {
         this.costToBeginning = distToBeginning;
     }
 
-    public int getCostToFinish() {
+    public double getCostToFinish() {
         return costToFinish;
     }
 
-    public void setCostToFinish(int distToFinish) {
+    public void setCostToFinish(double distToFinish) {
         this.costToFinish = distToFinish;
     }
     
-    public int getTotalCost() {
+    public double getTotalCost() {
         return (this.getCostToBeginning() == Integer.MAX_VALUE || this.getCostToFinish() == Integer.MAX_VALUE) ?
                 Integer.MAX_VALUE : this.getCostToBeginning() + this.getCostToFinish();
     }

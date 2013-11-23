@@ -34,7 +34,7 @@ public class DFSCellMazeGenerator implements CellMazeGenerator{
         }
         
         MyArrayList<Cell> neighbourCells = new MyArrayList<>();
-        NeighbourTools.addNeighboursToCoordinates(nextCell.getRow(), nextCell.getColumn(), neighbourCells, grid);
+        NeighbourTools.addInMazeNeighboursToCoordinates(nextCell.getRow(), nextCell.getColumn(), neighbourCells, grid, 2);
         
         while (!neighbourCells.isEmpty()) {
             Cell cell = neighbourCells.get(new Random().nextInt(neighbourCells.size()));

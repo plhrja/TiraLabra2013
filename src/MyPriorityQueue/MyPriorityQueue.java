@@ -29,6 +29,14 @@ public class MyPriorityQueue<E extends Comparable> extends AbstractQueue<E> impl
         }
         return this.arrayList.add(e);
     }
+    
+    @Override
+    public boolean addAll(Collection<? extends E> c){
+        for (E e : c) {
+            this.add(e);
+        }
+        return !c.isEmpty();
+    }
 
     @Override
     public boolean contains(Object o) {

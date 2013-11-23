@@ -1,7 +1,7 @@
 package cell.grid;
 
+import MyArrayList.MyArrayList;
 import cell.Cell;
-import java.util.ArrayList;
 
 public class CellGridPrinter {
 
@@ -14,7 +14,7 @@ public class CellGridPrinter {
         }
     }
     
-    public static void printGridWithPath(CellGrid grid, ArrayList<Cell> path) {
+    public static void printGridWithPath(CellGrid grid, MyArrayList<Cell> path) {
         for (int i = 0; i < grid.getRowLength(); i++) {
             for (int j = 0; j < grid.getColumnLength(); j++) {
                 System.out.print(
@@ -28,7 +28,7 @@ public class CellGridPrinter {
     //print-testing
     public static void main(String[] args) {
         CellGrid cellGrid = new CellGrid(15, 15);
-        ArrayList<Cell> path = new ArrayList<>();
+        MyArrayList<Cell> path = new MyArrayList<>();
         
         for (int i = 0; i < cellGrid.getRowLength(); i++) {
             cellGrid.getCell(i, 5).isSolid(false);

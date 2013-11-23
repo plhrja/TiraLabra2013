@@ -21,14 +21,14 @@ public class PrimCellMazeGenerator implements CellMazeGenerator{
         
         grid.getCell(row, col).InMaze(true);
         grid.getCell(row, col).isSolid(false);
-        NeighbourTools.addNeighboursToCoordinates(row, col, neighbourCells, grid);
+        NeighbourTools.addInMazeNeighboursToCoordinates(row, col, neighbourCells, grid, 2);
         
         while(!neighbourCells.isEmpty()){
             Cell cell = neighbourCells.get(rand.nextInt(neighbourCells.size()));
             if(!cell.isInMaze()){
                 NeighbourTools.connectNeighbourToMaze(cell, grid);
             }
-            NeighbourTools.addNeighboursToCoordinates(cell.getRow(), cell.getColumn(), neighbourCells, grid);
+            NeighbourTools.addInMazeNeighboursToCoordinates(cell.getRow(), cell.getColumn(), neighbourCells, grid, 2);
             neighbourCells.remove(cell);
         }
         
