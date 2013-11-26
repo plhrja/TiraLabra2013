@@ -1,7 +1,9 @@
 package gui;
 
+import cell.grid.CellGrid;
 import gui.components.JCellGrid;
 import gui.components.JMazeMenu;
+import gui.components.JSolverPanel;
 import gui.components.MazeMenuAdapter;
 import gui.components.SolverPanelAdapter;
 import java.awt.BorderLayout;
@@ -13,6 +15,7 @@ public class MPVGUI extends JFrame {
 
     private static final Dimension JCELL_DIMENSION = new Dimension(8, 8);
     private JCellGrid jCellMaze;
+    private CellGrid maze;
     private MazeMenuAdapter menu;
     private SolverPanelAdapter solverPanel;
     private boolean mazeInitialized;
@@ -21,9 +24,10 @@ public class MPVGUI extends JFrame {
         this.setLayout(new BorderLayout());
 
         this.jCellMaze = null;
+        this.maze = null;
         this.mazeInitialized = false;
 
-        this.solverPanel = new SolverPanelAdapter();
+        this.solverPanel = new JSolverPanel(this);
         this.menu = new JMazeMenu(this);
 
         this.add("South", this.solverPanel);
@@ -45,16 +49,20 @@ public class MPVGUI extends JFrame {
         this.remove(jCellMaze);
         }
         this.jCellMaze = maze;
+        this.maze = maze.getGrid();
         this.add("North", jCellMaze);
         this.pack();
         this.setLocationRelativeTo(null);
         this.mazeInitialized = true;
     }
 
-    public JCellGrid getjCellGrid() {
+    public JCellGrid getjCellMaze() {
         return jCellMaze;
     }
-    
+
+    public CellGrid getMaze() {
+        return maze;
+    }
     
     
     //testing

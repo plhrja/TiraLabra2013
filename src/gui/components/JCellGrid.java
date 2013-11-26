@@ -1,9 +1,11 @@
 package gui.components;
 
+import MyArrayList.MyArrayList;
 import cell.Cell;
 import cell.grid.CellGrid;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.Collection;
 import javax.swing.JPanel;
 
 
@@ -88,6 +90,12 @@ public class JCellGrid extends JPanel{
                     jCell.open();
                 }
             }
+        }
+    }
+    
+    public void paintPath(MyArrayList<Cell> path){
+        for (Cell cell : path) {
+            this.cellArray[cell.getRow()][cell.getColumn()].setToPath();
         }
     }
     

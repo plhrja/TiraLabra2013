@@ -18,23 +18,27 @@ public class JCellMouseListener extends MouseAdapter{
     
     @Override
     public void mousePressed(MouseEvent ev){
-        if(cell.isOpen() && !cell.isStart() && !cell.isFinish()){
+        if(isValid()){
             cell.getComponentPopupMenu().show(ev.getComponent(), ev.getX(), ev.getY());
         }
     }
     
     @Override
     public void mouseEntered(MouseEvent ev){
-        if(cell.isOpen() && !cell.isStart() && !cell.isFinish()){
+        if(isValid()){
             cell.setBorder(BORDER);
         }
     }
     
     @Override
     public void mouseExited(MouseEvent ev){
-        if(cell.isOpen() && !cell.isStart() && !cell.isFinish()){
+        if(isValid()){
             cell.setBorder(null);
         }
+    }
+
+    private boolean isValid() {
+        return cell.isOpen() && !cell.isStart() && !cell.isFinish();
     }
     
 }
