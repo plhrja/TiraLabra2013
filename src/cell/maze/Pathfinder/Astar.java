@@ -43,8 +43,9 @@ public class Astar {
     
     private void initCells(Cell start, Cell finish, CellGrid grid) {
         for (Cell cell : grid) {
-            if (cell.isSolid()) {
+            if (!cell.isSolid()) {
                 cell.setCostToFinish(this.heuristic.calculateDistance(cell, finish));
+                cell.setCostToBeginning(Integer.MAX_VALUE);
                 cell.setParentCell(null);
             }
             start.setCostToBeginning(0);

@@ -3,7 +3,6 @@ package gui.components;
 import MyArrayList.MyArrayList;
 import cell.Cell;
 import cell.grid.CellGrid;
-import cell.grid.CellGridPrinter;
 import cell.maze.Pathfinder.Astar;
 import gui.MPVGUI;
 import heuristics.Heuristic;
@@ -48,8 +47,6 @@ public class JMazeWorker extends SwingWorker<MyArrayList<Cell>, Void> {
             MyArrayList<Cell> path = this.get();
             if(path != null){
                 this.gui.getjCellMaze().paintPath(path);
-                CellGridPrinter.printGridWithPath(maze, path);
-                System.out.println("hahahaha");
             }
             
         } catch (InterruptedException | ExecutionException ex) {
