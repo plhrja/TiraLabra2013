@@ -1,6 +1,7 @@
 package gui.components;
 
 import gui.MPVGUI;
+import heuristics.DijikstraHeuristic;
 import heuristics.EuclideanHeuristic;
 import heuristics.Heuristic;
 import heuristics.ManhattanHeuristic;
@@ -19,15 +20,10 @@ public class JSolverPanel extends SolverPanelAdapter{
     
     @Override
     public ActionListener solveFunction() {
-        final String heuristicsString = this.getHeuristicsValue();
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gui.setEnabled(false);
-                Heuristic heuristic = (heuristicsString.equals("Man"))
-                        ? new ManhattanHeuristic() : new EuclideanHeuristic();
-                new JMazeWorker(gui, heuristic).execute();
-                gui.setEnabled(true);
+                new JMazeWorker(gui).execute();
             }
         };
     }

@@ -56,6 +56,10 @@ public class MPVGUI extends JFrame {
         this.mazeInitialized = true;
     }
 
+    public SolverPanelAdapter getSolverPanel() {
+        return solverPanel;
+    }
+
     public JCellGrid getjCellMaze() {
         return jCellMaze;
     }

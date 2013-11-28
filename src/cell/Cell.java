@@ -114,7 +114,7 @@ public class Cell implements Comparable<Cell>{
         return (this.getTotalCost() > cell.getTotalCost()) ? 1
                 : (this.getTotalCost() == cell.getTotalCost()) ? 0 : -1;
     }
-
+    
     //test-main
     public static void main(String[] args) {
         MyPriorityQueue<Cell> queue = new MyPriorityQueue<>();

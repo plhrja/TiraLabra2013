@@ -10,8 +10,11 @@ import cell.maze.PrimCellMazeGenerator;
 import cell.neighbourTools.NeighbourTools;
 import heuristics.Heuristic;
 import heuristics.ManhattanHeuristic;
+import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Astar {
+public class Astar extends Observable{
     
     private Heuristic heuristic;
     
@@ -19,7 +22,7 @@ public class Astar {
         this.heuristic = heuristic;
     }
     
-    public MyArrayList findPath(Cell start, Cell finish, CellGrid grid) {
+    public MyArrayList findPath(Cell start, Cell finish, CellGrid grid, int delay) {
         MyArrayList<Cell> pathToFinish = new MyArrayList<>();
         MyPriorityQueue<Cell> queue = new MyPriorityQueue();
         Cell head = null;
@@ -31,6 +34,15 @@ public class Astar {
             head = queue.poll();
             if (head != finish) {
                 queue.addAll(NeighbourTools.getOpenNeighboursToCoordinates(grid, head));
+                if(delay != 0){
+                    try {
+                        Thread.sleep(delay);
+                        setChanged();
+                        notifyObservers(head);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Astar.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
         }
         
@@ -68,6 +80,6 @@ public class Astar {
         CellMazeGenerator gen = new PrimCellMazeGenerator();
         CellGrid maze = gen.generateSmallMaze();
         CellGridPrinter.printGridWithPath(maze, astar.findPath(maze.getCell(1, 1),
-                maze.getCell(maze.getRowLength() - 2, maze.getColumnLength() - 2), maze));
+                maze.getCell(maze.getRowLength() - 2, maze.getColumnLength() - 2), maze, 0));
     }
 }
