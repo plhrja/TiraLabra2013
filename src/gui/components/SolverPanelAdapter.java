@@ -66,10 +66,8 @@ public class SolverPanelAdapter extends JPanel {
         try {
             delayValue = Integer.parseInt(this.delay.getText());
         } catch (NumberFormatException e) {
-            System.out.println("asdasd");
             delayValue = DEFAULT_DELAY_VALUE;
         }
-        System.out.println(delayValue);
         return (delayValue > -1 && delayValue < 1001)
                 ? delayValue : DEFAULT_DELAY_VALUE;
     }
