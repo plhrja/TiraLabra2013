@@ -4,11 +4,19 @@ import cell.Cell;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * An implementation of an iterator to the {@code CellGrid} object.
+ * @author Easysimulation
+ */
 public class CellGridIterator implements Iterator<Cell> {
 
     private CellGrid grid;
     private int counter;
 
+    /**
+     * Constructor constructs an iterator to the specified {@code CellGrid} object
+     * @param grid the {@code CellGrid} object that the iterator is created to.
+     */
     public CellGridIterator(CellGrid grid) {
         this.grid = grid;
         counter = 0;

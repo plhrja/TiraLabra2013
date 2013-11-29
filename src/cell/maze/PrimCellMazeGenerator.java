@@ -37,17 +37,17 @@ public class PrimCellMazeGenerator implements CellMazeGenerator{
     
     @Override
     public CellGrid generateSmallMaze() {
-        return generatePrimMaze(CellGridGenerator.createSmallGrid());
+        return generatePrimMaze(CellGridGenerator.generateSmallGrid());
     }
 
     @Override
     public CellGrid generateMediumMaze() {
-       return generatePrimMaze(CellGridGenerator.createMediumGrid());
+       return generatePrimMaze(CellGridGenerator.generateMediumGrid());
     }
 
     @Override
     public CellGrid generateLargeMaze() {
-        return generatePrimMaze(CellGridGenerator.createLargeGrid());
+        return generatePrimMaze(CellGridGenerator.generateLargeGrid());
     }
     
     //test-main

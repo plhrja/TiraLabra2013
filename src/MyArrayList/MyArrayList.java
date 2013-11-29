@@ -2,11 +2,19 @@ package MyArrayList;
 
 import java.io.Serializable;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * A list implementation replicating the {@code ArrayList} implementation. For documentation <br>
+ * info see the original implementation!
+ * @author plhrja
+ * @param <E>
+ * @see ArrayList
+ */
 public class MyArrayList<E> implements Serializable, List<E>, Iterable<E> {
 
     private E[] array;

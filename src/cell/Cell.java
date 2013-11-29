@@ -27,7 +27,8 @@ public class Cell implements Comparable<Cell>{
 
     /**
      * Constructor constructs a new cell object with given parameters <br>
-     * {@code row} and {@code column}, i.e. assigning the position of the cell.
+     * {@code row} and {@code column}, i.e. assigning the position of the cell. <br>
+     * The cell is initially defined as solid.
      * @param row the row position of the cell.
      * @param column the column position of the cell
      */

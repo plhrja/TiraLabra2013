@@ -47,17 +47,17 @@ public class DFSCellMazeGenerator implements CellMazeGenerator{
 
     @Override
     public CellGrid generateSmallMaze() {
-        return generateDFSMaze(CellGridGenerator.createSmallGrid());
+        return generateDFSMaze(CellGridGenerator.generateSmallGrid());
     }
 
     @Override
     public CellGrid generateMediumMaze() {
-        return generateDFSMaze(CellGridGenerator.createMediumGrid());
+        return generateDFSMaze(CellGridGenerator.generateMediumGrid());
     }
 
     @Override
     public CellGrid generateLargeMaze() {
-        return generateDFSMaze(CellGridGenerator.createLargeGrid());
+        return generateDFSMaze(CellGridGenerator.generateLargeGrid());
     }
     
     //test-main

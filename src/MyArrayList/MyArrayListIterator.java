@@ -3,6 +3,13 @@ package MyArrayList;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
+/**
+ * A {@code ListIterator} implementation to the {@code MyArrayList} list. For documentation <br>
+ * info see the {@code ListIterator} documentation!
+ * @author Easysimulation
+ * @param <E>
+ * @see ListIterator
+ */
 public class MyArrayListIterator<E> implements ListIterator<E> {
 
     private MyArrayList arrayList;

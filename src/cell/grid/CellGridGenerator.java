@@ -1,5 +1,10 @@
 package cell.grid;
 
+/**
+ * A static tool for creating {@code CellGrid} structures of predefined size. <br>
+ * The different dimensions are not explicitly specified in the documentation!
+ * @author Easysimulation
+ */
 public class CellGridGenerator {
     
     private static final int SMALL_ROW_SIZE = 41;
@@ -9,15 +14,27 @@ public class CellGridGenerator {
     private static final int LARGE_ROW_SIZE = 79;
     private static final int LARGE_COLUMN_SIZE = 105;
     
-    public static CellGrid createSmallGrid(){
+    /**
+     * Returns a small {@code CellGrid} object. The exact dimension is not specified.
+     * @return small {@code CellGrid} object.
+     */
+    public static CellGrid generateSmallGrid(){
         return new CellGrid(SMALL_ROW_SIZE, SMALL_COLUMN_SIZE);
     }
     
-    public static CellGrid createMediumGrid(){
+    /**
+     * Returns a medium {@code CellGrid} object. The exact dimension is not specified.
+     * @return medium {@code CellGrid} object.
+     */
+    public static CellGrid generateMediumGrid(){
         return new CellGrid(MEDIUM_ROW_SIZE, MEDIUM_COLUMN_SIZE);
     }
     
-    public static CellGrid createLargeGrid(){
+    /**
+     * Returns a large {@code CellGrid} object. The exact dimension is not specified.
+     * @return large {@code CellGrid} object.
+     */
+    public static CellGrid generateLargeGrid(){
         return new CellGrid(LARGE_ROW_SIZE, LARGE_COLUMN_SIZE);
     }
 
