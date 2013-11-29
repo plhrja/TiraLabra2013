@@ -10,6 +10,7 @@ import heuristics.DijikstraHeuristic;
 import heuristics.EuclideanHeuristic;
 import heuristics.Heuristic;
 import heuristics.ManhattanHeuristic;
+import heuristics.SemiEuclideanHeuristic;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.ExecutionException;
@@ -27,9 +28,10 @@ public class JMazeWorker extends SwingWorker<MyArrayList<Cell>, Void> implements
     public JMazeWorker(MPVGUI gui) {
         this.gui = gui;
         String heuristicsString = this.gui.getSolverPanel().getHeuristicsValue();
-        this.heuristic = (heuristicsString.equals("Man"))
-                ? new ManhattanHeuristic() : (heuristicsString.equals("Euc"))
-                ? new EuclideanHeuristic() : new DijikstraHeuristic();
+        this.heuristic = (heuristicsString.equals("Manhattan"))
+                ? new ManhattanHeuristic() : (heuristicsString.equals("Euclidean"))
+                ? new EuclideanHeuristic() : (heuristicsString.equals("SemiEuc"))
+                ? new SemiEuclideanHeuristic() : new DijikstraHeuristic();
         this.delay = this.gui.getSolverPanel().getDelayValue();
         this.maze = this.gui.getMaze();
     }

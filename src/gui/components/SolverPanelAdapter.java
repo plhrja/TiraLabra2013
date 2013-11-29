@@ -11,14 +11,14 @@ import javax.swing.JTextField;
 
 public class SolverPanelAdapter extends JPanel {
 
-    private static final String[] HEURISTIC = {"Man", "Euc", "Dix"};
+    private static final String[] HEURISTIC = {"Manhattan", "Euclidean", "SemiEuc", "Dijikstra"};
     private static final String ALGORITHM_LABEL_TEXT = "Use heuristic";
     private static final String SOLVE_TEXT = "Solve";
     private static final String CLEAR_PATH_TEXT = "Clear path";
     private static final String DELAY_LABEL_TEXT = "Delay";
     private static final int DELAY_WIDTH = 3;
     private static final int DEFAULT_DELAY_VALUE = 0;
-    private static final int DELAY_MAX_VALUE = 50;
+    private static final int DELAY_MAX_VALUE = 200;
     private static final int PADDING = 30;
     private JLabel algorithmLabel;
     private JLabel delayLabel;
@@ -69,7 +69,7 @@ public class SolverPanelAdapter extends JPanel {
         } catch (NumberFormatException e) {
             delayValue = DEFAULT_DELAY_VALUE;
         }
-        return (delayValue > -1 && delayValue < DELAY_MAX_VALUE)
+        return (delayValue >= 0 && delayValue <= DELAY_MAX_VALUE)
                 ? delayValue : DEFAULT_DELAY_VALUE;
     }
     
