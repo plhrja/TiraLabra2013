@@ -4,6 +4,7 @@ import MyArrayList.MyArrayList;
 import cell.Cell;
 import cell.grid.CellGrid;
 import cell.maze.Pathfinder.Astar;
+import cell.maze.Pathfinder.Pathfinder;
 import gui.MPVGUI;
 import heuristics.DijikstraHeuristic;
 import heuristics.EuclideanHeuristic;
@@ -37,7 +38,7 @@ public class JMazeWorker extends SwingWorker<MyArrayList<Cell>, Void> implements
     public MyArrayList doInBackground() throws Exception {
         try {
             this.gui.setEnabled(false);
-            Astar pathfinder = new Astar(this.heuristic);
+            Pathfinder pathfinder = new Astar(this.heuristic);
             pathfinder.addObserver(this);
 
             int startRow = this.gui.getjCellMaze().getStart().getRow();
