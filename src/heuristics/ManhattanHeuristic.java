@@ -3,6 +3,10 @@ package heuristics;
 import cell.Cell;
 
 
+/**
+ * A heuristic implementation using the Manhattan metric (row and column difference).
+ * @author Easysimulation
+ */
 public class ManhattanHeuristic implements Heuristic{
 
     @Override

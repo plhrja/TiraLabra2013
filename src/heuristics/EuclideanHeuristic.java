@@ -3,6 +3,10 @@ package heuristics;
 import cell.Cell;
 
 
+/**
+ * A heuristic implementation using the Euclidean metric.
+ * @author Easysimulation
+ */
 public class EuclideanHeuristic implements Heuristic{
 
     @Override

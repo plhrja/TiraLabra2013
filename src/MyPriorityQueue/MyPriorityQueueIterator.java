@@ -4,6 +4,13 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 
+/**
+ * An iterator implementation for the {@code MyPriorityQueue} class. See the {@code Iterator} <br>
+ * class documentation!
+ * @author Easysimulation
+ * @param <E>
+ * @see Iterator
+ */
 public class MyPriorityQueueIterator<E> implements Iterator<E> {
 
     private MyPriorityQueue queue;

@@ -2,6 +2,10 @@ package heuristics;
 
 import cell.Cell;
 
+/**
+ * A heuristic implementation using Euclidean metric to the power of 2.
+ * @author Easysimulation
+ */
 public class SemiEuclideanHeuristic implements Heuristic{
 
     @Override

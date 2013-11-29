@@ -7,6 +7,7 @@ import java.util.NoSuchElementException;
 /**
  * An implementation of an iterator to the {@code CellGrid} object.
  * @author Easysimulation
+ * @see CellGrid
  */
 public class CellGridIterator implements Iterator<Cell> {
 

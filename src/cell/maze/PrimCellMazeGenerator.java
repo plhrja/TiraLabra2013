@@ -8,6 +8,13 @@ import cell.grid.CellGridPrinter;
 import cell.neighbourTools.NeighbourTools;
 import java.util.Random;
 
+/**
+ * An implementation of {@code CellMazeGenerator} interface. Maze generation implemented
+ * with Prim's algorithm. For more information see for example 
+ * <a href="http://en.wikipedia.org/wiki/Maze_generation_algorithm">here<a/>
+ * @author Easysimulation
+ * @see CellMazeGenerator
+ */
 public class PrimCellMazeGenerator implements CellMazeGenerator{
 
     private static CellGrid generatePrimMaze(CellGrid grid){

@@ -7,6 +7,7 @@ import cell.Cell;
  * An implementation of a static printer object that prints an ASCII representation of a <br>
  * {@code CellGrid} object.
  * @author Easysimulation
+ * @see CellGrid
  */
 public class CellGridPrinter {
 

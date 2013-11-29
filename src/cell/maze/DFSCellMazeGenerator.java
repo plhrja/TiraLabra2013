@@ -4,10 +4,16 @@ import MyArrayList.MyArrayList;
 import cell.Cell;
 import cell.grid.CellGrid;
 import cell.grid.CellGridGenerator;
-import cell.grid.CellGridPrinter;
 import cell.neighbourTools.NeighbourTools;
 import java.util.Random;
 
+/**
+ * An implementation of {@code CellMazeGenerator} interface. Maze generation implemented
+ * with backtracking depth first search. For more information see for example 
+ * <a href="http://en.wikipedia.org/wiki/Maze_generation_algorithm">here<a/>
+ * @author Easysimulation
+ * @see CellMazeGenerator
+ */
 public class DFSCellMazeGenerator implements CellMazeGenerator{
     
     private static CellGrid generateDFSMaze(CellGrid grid) {
@@ -58,11 +64,6 @@ public class DFSCellMazeGenerator implements CellMazeGenerator{
     @Override
     public CellGrid generateLargeMaze() {
         return generateDFSMaze(CellGridGenerator.generateLargeGrid());
-    }
-    
-    //test-main
-    public static void main(String[] args) {
-        CellGridPrinter.printGrid(new DFSCellMazeGenerator().generateSmallMaze());
     }
     
 }

@@ -5,7 +5,15 @@ import java.io.Serializable;
 import java.util.AbstractQueue;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.PriorityQueue;
 
+/**
+ * A priority queue implementation replicating the {@code PriorityQueue} implementation. For documentation <br>
+ * info see the original implementation!
+ * @author Easysimulation
+ * @param <E>
+ * @see PriorityQueue
+ */
 public class MyPriorityQueue<E extends Comparable> extends AbstractQueue<E> implements Serializable, Collection<E> {
 
     private MyArrayList<E> arrayList;

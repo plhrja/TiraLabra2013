@@ -4,6 +4,7 @@ package cell.grid;
  * A static tool for creating {@code CellGrid} structures of predefined size. <br>
  * The different dimensions are not explicitly specified in the documentation!
  * @author Easysimulation
+ * @see CellGrid
  */
 public class CellGridGenerator {
     
