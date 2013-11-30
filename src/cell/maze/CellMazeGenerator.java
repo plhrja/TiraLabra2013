@@ -20,9 +20,17 @@ public interface CellMazeGenerator {
      */
     public CellGrid generateMediumMaze();
     /**
-     *Returns a large {@code CellGrid} object representation of a maze. The exact dimension is not specified.
+     * Returns a large {@code CellGrid} object representation of a maze. The exact dimension is not specified.
      * @return large {@code CellGrid} maze.
      */
     public CellGrid generateLargeMaze();
+    
+    /**
+     * Returns a {@code CellGrid} object representation of a maze. 
+     * @param rowLength row length of the maze
+     * @param columnLength column length of the maze
+     * @return {@code CellGrid} representation of a maze.
+     */
+    public CellGrid generateCustomMaze(int rowLength, int columnLength);
 
 }

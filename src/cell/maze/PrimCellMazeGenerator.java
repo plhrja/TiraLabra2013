@@ -57,6 +57,11 @@ public class PrimCellMazeGenerator implements CellMazeGenerator{
         return generatePrimMaze(CellGridGenerator.generateLargeGrid());
     }
     
+    @Override
+    public CellGrid generateCustomMaze(int rowLength, int columnLength) {
+        return generatePrimMaze(new CellGrid(rowLength, columnLength));
+    }
+    
     //test-main
     public static void main(String[] args) {
         CellGridPrinter.printGrid(new PrimCellMazeGenerator().generateSmallMaze());

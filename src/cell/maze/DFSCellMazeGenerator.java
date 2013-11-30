@@ -65,5 +65,10 @@ public class DFSCellMazeGenerator implements CellMazeGenerator{
     public CellGrid generateLargeMaze() {
         return generateDFSMaze(CellGridGenerator.generateLargeGrid());
     }
+
+    @Override
+    public CellGrid generateCustomMaze(int rowLength, int columnLength) {
+        return generateDFSMaze(new CellGrid(rowLength, columnLength));
+    }
     
 }
