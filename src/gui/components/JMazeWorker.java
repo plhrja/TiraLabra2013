@@ -72,10 +72,12 @@ public class JMazeWorker extends SwingWorker<MyArrayList<Cell>, Void> implements
 
     @Override
     public void update(Observable o, Object arg) {
-        Cell c = (Cell) arg;
-        if (this.gui.getjCellMaze().getStart().getRow() != c.getRow()
-                || this.gui.getjCellMaze().getStart().getColumn() != c.getColumn()) {
-            this.gui.getjCellMaze().getJCell(c.getRow(), c.getColumn()).processed();
+        if (delay != 0) {
+            Cell c = (Cell) arg;
+            if (this.gui.getjCellMaze().getStart().getRow() != c.getRow()
+                    || this.gui.getjCellMaze().getStart().getColumn() != c.getColumn()) {
+                this.gui.getjCellMaze().getJCell(c.getRow(), c.getColumn()).processed();
+            }
         }
     }
 }
