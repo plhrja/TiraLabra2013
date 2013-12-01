@@ -2,6 +2,7 @@ package speedTesting.pathfinding;
 
 import cell.grid.CellGrid;
 import cell.maze.CellMazeGenerator;
+import cell.maze.DFSCellMazeGenerator;
 import cell.maze.Pathfinder.Astar;
 import cell.maze.Pathfinder.Pathfinder;
 import cell.maze.PrimCellMazeGenerator;
@@ -122,7 +123,7 @@ public class HeuristicsSpeedTest implements Observer {
     }
     
     public static void main(String[] args) {
-        HeuristicsSpeedTest primHeuristicsSpeedTest = new HeuristicsSpeedTest(new PrimCellMazeGenerator());
-        primHeuristicsSpeedTest.test("heuristics_speedTest_primGen.dat", 50);
+        HeuristicsSpeedTest primHeuristicsSpeedTest = new HeuristicsSpeedTest(new DFSCellMazeGenerator());
+        primHeuristicsSpeedTest.test("heuristics_speedTest_DFS.dat", 100);
     }
 }
