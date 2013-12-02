@@ -60,11 +60,11 @@ public class NeighbourTools {
     public static void connect(Cell cell1, Cell cell2, CellGrid grid) {
         int row = (cell1.getRow() - cell2.getRow() == 0)
                 ? cell1.getRow() : Math.min(cell1.getRow(), cell2.getRow()) + 1;
-        int col = (cell1.getColumn()- cell2.getColumn()== 0)
-                ? cell1.getColumn(): Math.min(cell1.getColumn(), cell2.getColumn()) + 1;
+        int col = (cell1.getColumn() - cell2.getColumn() == 0)
+                ? cell1.getColumn() : Math.min(cell1.getColumn(), cell2.getColumn()) + 1;
         grid.getCell(row, col).isSolid(false);
     }
-    
+
     public static MyArrayList getOpenNeighboursToCoordinates(CellGrid grid, Cell parent) {
         MyArrayList<Cell> openNeighbours = new MyArrayList<>();
         int row = parent.getRow();
@@ -91,7 +91,7 @@ public class NeighbourTools {
 
         return openNeighbours;
     }
-    
+
     private static void setDistAndAddParent(Cell cellToAdd, Cell parent, MyArrayList<Cell> openNeighbours) {
         double newCost = parent.getCostToBeginning() + 1;
         if ((cellToAdd.getParentCell() == null) || newCost < cellToAdd.getCostToBeginning()) {

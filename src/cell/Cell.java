@@ -19,7 +19,7 @@ public class Cell implements Comparable<Cell>{
     private boolean inMaze;
     
     /**
-     * Constructs a new cell object with {@code row} = -1 = {@code column}
+     * Constructs a new cell object with {@code row} = -1 = {@code column}. Type defined as solid.
      */
     public Cell(){
         this(-1,-1);
@@ -157,12 +157,12 @@ public class Cell implements Comparable<Cell>{
     
     /**
      * Returns the sum of the {@code costToBeginning} and {@code costToFinish} value, <br>
-     * given that both have been reassigned to something less than {@code Integer.max}. <br>
-     * Otherwise will {@code Integer.max} be returned.
-     * @return
+     * given that both have been reassigned to something positive and less than {@code Integer.MAX_VALUE}. <br>
+     * Otherwise will {@code Integer.MAX_VALUE} be returned.
+     * @return sum of the {@code costToBeginning} and {@code costToFinish} value or {@code Integer.MAX_VALUE}
      */
     public double getTotalCost() {
-        return (this.getCostToBeginning() == Integer.MAX_VALUE || this.getCostToFinish() == Integer.MAX_VALUE) ?
+        return (this.getCostToBeginning() + this.getCostToFinish() < 0) ?
                 Integer.MAX_VALUE : this.getCostToBeginning() + this.getCostToFinish();
     }
     
@@ -210,8 +210,18 @@ public class Cell implements Comparable<Cell>{
     }
 
     @Override
-    public int compareTo(Cell cell) {
+    public int compareTo(Cell cell) { 
         return (this.getTotalCost() > cell.getTotalCost()) ? 1
-                : (this.getTotalCost() == cell.getTotalCost()) ? 0 : -1;
+                : (Math.abs(this.getTotalCost() - cell.getTotalCost()) < 1e-12) ? 0 : -1;
+    }
+    
+    @Override
+    public boolean equals(Object obj){
+        Cell cellObj = (Cell) obj;
+        return (obj != null 
+                && obj.getClass() == this.getClass() 
+                && this.compareTo(cellObj) == 0 
+                && cellObj.getRow() == this.getRow() 
+                && cellObj.getColumn() == this.getColumn());
     }
 }

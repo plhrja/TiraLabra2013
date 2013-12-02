@@ -11,7 +11,6 @@ import heuristics.Heuristic;
 import heuristics.ManhattanHeuristic;
 import heuristics.SemiEuclideanHeuristic;
 import static org.junit.Assert.assertEquals;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -20,8 +19,6 @@ import org.junit.Test;
  */
 public class AstarTest {
 
-    public AstarTest() {
-    }
     private static final CellGrid MAZE_1 = CellGridParser.parseTextToMaze("maze1.txt");
     private static final CellGrid MAZE_2 = CellGridParser.parseTextToMaze("maze2.txt");
     private static final CellGrid MAZE_3 = CellGridParser.parseTextToMaze("maze3.txt");
@@ -65,22 +62,32 @@ public class AstarTest {
     
     @Test
     public void manhattanHeuristicWorkingProperly(){
+        System.out.println("Manhattan:");
         assertEquals(true, heuristicWorkingProperly(new ManhattanHeuristic()));
+        System.out.println("------------------------------------------------");
+        System.out.println();
     }
     
     @Test
     public void euclideanHeuristicWorkingProperly(){
+        System.out.println("Euclidean:");
         assertEquals(true, heuristicWorkingProperly(new EuclideanHeuristic()));
+        System.out.println("------------------------------------------------");
+        System.out.println();
     }
     
     //NOTE: this test is to show that Semi-Euclidean method for distance-estimation
     //is, although useful, NOT a real heuristic in the sence of the definition of a heuristic.
     @Test
     public void semiEuclideanHeuristicIsNotARealHeuristic(){
+        System.out.println("Semi-Euclidean:");
         assertEquals(false, heuristicWorkingProperly(new SemiEuclideanHeuristic()));
+        System.out.println("------------------------------------------------");
+        System.out.println("");
     }
     @Test
     public void dijkstraHeuristicWorkingProperly(){
+        System.out.println("Dijikstra");
         assertEquals(true, heuristicWorkingProperly(new DijkstraHeuristic()));
     }
 }
