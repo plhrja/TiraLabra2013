@@ -1,10 +1,6 @@
 package gui.components;
 
 import gui.MPVGUI;
-import heuristics.DijikstraHeuristic;
-import heuristics.EuclideanHeuristic;
-import heuristics.Heuristic;
-import heuristics.ManhattanHeuristic;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

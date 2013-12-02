@@ -6,7 +6,7 @@ import cell.grid.CellGrid;
 import cell.maze.Pathfinder.Astar;
 import cell.maze.Pathfinder.Pathfinder;
 import gui.MPVGUI;
-import heuristics.DijikstraHeuristic;
+import heuristics.DijkstraHeuristic;
 import heuristics.EuclideanHeuristic;
 import heuristics.Heuristic;
 import heuristics.ManhattanHeuristic;
@@ -31,7 +31,7 @@ public class JMazeWorker extends SwingWorker<MyArrayList<Cell>, Void> implements
         this.heuristic = (heuristicsString.equals("Manhattan"))
                 ? new ManhattanHeuristic() : (heuristicsString.equals("Euclidean"))
                 ? new EuclideanHeuristic() : (heuristicsString.equals("SemiEuc"))
-                ? new SemiEuclideanHeuristic() : new DijikstraHeuristic();
+                ? new SemiEuclideanHeuristic() : new DijkstraHeuristic();
         this.delay = this.gui.getSolverPanel().getDelayValue();
         this.maze = this.gui.getMaze();
     }

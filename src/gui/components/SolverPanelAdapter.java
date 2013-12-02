@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 
 public class SolverPanelAdapter extends JPanel {
 
-    private static final String[] HEURISTIC = {"Manhattan", "Euclidean", "SemiEuc", "Dijikstra"};
+    private static final String[] HEURISTIC = {"Manhattan", "Euclidean", "SemiEuc", "Dijkstra"};
     private static final String ALGORITHM_LABEL_TEXT = "Use heuristic";
     private static final String SOLVE_TEXT = "Solve";
     private static final String CLEAR_PATH_TEXT = "Clear path";

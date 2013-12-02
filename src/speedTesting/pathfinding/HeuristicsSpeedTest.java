@@ -6,7 +6,7 @@ import cell.maze.DFSCellMazeGenerator;
 import cell.maze.Pathfinder.Astar;
 import cell.maze.Pathfinder.Pathfinder;
 import cell.maze.PrimCellMazeGenerator;
-import heuristics.DijikstraHeuristic;
+import heuristics.DijkstraHeuristic;
 import heuristics.EuclideanHeuristic;
 import heuristics.Heuristic;
 import heuristics.ManhattanHeuristic;
@@ -31,7 +31,7 @@ public class HeuristicsSpeedTest implements Observer {
         this.heuristics = new Heuristic[]{new ManhattanHeuristic(),
                                          new EuclideanHeuristic(),
                                          new SemiEuclideanHeuristic(),
-                                         new DijikstraHeuristic()};
+                                         new DijkstraHeuristic()};
         this.generator = generator;
         this.counter = 0;
     }
