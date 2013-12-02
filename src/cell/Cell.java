@@ -26,16 +26,26 @@ public class Cell implements Comparable<Cell>{
     }
 
     /**
-     * Constructor constructs a new cell object with given parameters <br>
-     * {@code row} and {@code column}, i.e. assigning the position of the cell. <br>
-     * The cell is initially defined as solid.
+     * Constructs a new cell object with {@code row} and {@code column} defined by the parameters,
+     * type defined as solid.
      * @param row the row position of the cell.
      * @param column the column position of the cell
      */
     public Cell(int row, int column) {
+        this(row,column,true);
+    }
+    /**
+     * Constructor constructs a new cell object with given parameters <br>
+     * {@code row} and {@code column}, i.e. assigning the position of the cell. <br>
+     * The {@code solid} parameter defines the cell as solid if the parameter is {@code true}, else as open.
+     * @param row the row position of the cell.
+     * @param column the column position of the cell
+     * @param solid defines the type of the cell.
+     */
+    public Cell(int row, int column, boolean solid){
         this.row = row;
         this.column = column;
-        this.solid = true;
+        this.solid = solid;
         this.costToBeginning = Integer.MAX_VALUE;
         this.costToFinish = Integer.MAX_VALUE;
         this.parentCell = null;
