@@ -73,13 +73,4 @@ public class Astar extends Pathfinder {
         }
         return pathToFinish;
     }
-
-    //test-main
-    public static void main(String[] args) {
-        Astar astar = new Astar(new ManhattanHeuristic());
-        CellMazeGenerator gen = new PrimCellMazeGenerator();
-        CellGrid maze = gen.generateSmallMaze();
-        CellGridPrinter.printGridWithPath(maze, astar.findPath(maze.getCell(1, 1),
-                maze.getCell(maze.getRowLength() - 2, maze.getColumnLength() - 2), maze, 0));
-    }
 }
