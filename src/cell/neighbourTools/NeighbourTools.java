@@ -15,9 +15,9 @@ import java.util.Random;
 public class NeighbourTools {
 
     private static boolean insideBoundaries(int row, int col, CellGrid grid) {
-        return row > 0 && col > 0
-                && row < grid.getRowLength() - 1
-                && col < grid.getColumnLength() - 1;
+        return row > -1 && col > -1
+                && row < grid.getRowLength()
+                && col < grid.getColumnLength();
     }
 
     /**
@@ -87,6 +87,7 @@ public class NeighbourTools {
     /**
      * Essentially the same as the {@code connectNeighbourToMaze} method, but doing it to
      * two predefined {@code Cell} objects instead of doing it pseudo-randomly.
+     * Steps between {@code Cell} objects is 2.
      */
     public static void connect(Cell cell1, Cell cell2, CellGrid grid) {
         int row = (cell1.getRow() - cell2.getRow() == 0)

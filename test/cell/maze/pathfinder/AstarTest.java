@@ -22,6 +22,7 @@ public class AstarTest {
     private static final CellGrid MAZE_1 = CellGridParser.parseTextToMaze("maze1.txt");
     private static final CellGrid MAZE_2 = CellGridParser.parseTextToMaze("maze2.txt");
     private static final CellGrid MAZE_3 = CellGridParser.parseTextToMaze("maze3.txt");
+    private static final CellGrid MAZE_4 = CellGridParser.parseTextToMaze("maze4.txt");
     private Astar astar;
 
     private void initAstar(Heuristic heuristic) {
@@ -56,6 +57,14 @@ public class AstarTest {
         CellGridPrinter.printGridWithPath(MAZE_3, path);
         System.out.println();
         workingProperly = (workingProperly && path.size() == 39) ? true : false;
+
+        path = astar.findPath(MAZE_4.getCell(1, 1),
+                              MAZE_4.getCell(22, MAZE_4.getColumnLength() - 14),
+                              MAZE_4,
+                              0);
+        CellGridPrinter.printGridWithPath(MAZE_4, path);
+        System.out.println();
+        workingProperly = (workingProperly && path.size() == 92) ? true : false;
 
         return workingProperly;
     }
