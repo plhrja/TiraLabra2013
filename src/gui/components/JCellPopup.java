@@ -4,12 +4,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
+/**
+ *
+ * @author Easysimulation
+ */
 public class JCellPopup extends PopupAdapter{
     
+    /**
+     *
+     * @param cell
+     * @param grid
+     */
     public JCellPopup(JCell cell, JCellGrid grid){
         super(cell, grid);
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     public ActionListener setStartFunction(){
         final JCellGrid grid = this.getGrid();
@@ -28,6 +41,10 @@ public class JCellPopup extends PopupAdapter{
         };
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     public ActionListener setFinishFunction(){
         final JCellGrid grid = this.getGrid();

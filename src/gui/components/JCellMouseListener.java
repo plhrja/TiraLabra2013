@@ -7,6 +7,13 @@ import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 
 
+/**
+ * A {@code MouseAdapter} implementation intended to be used with the {@code JCellGrid} object
+ * as an aid in defining the starting and finishing locations of a path.
+ * @author Easysimulation
+ * @see JCellGrid
+ * @see MouseAdapter
+ */
 public class JCellMouseListener extends MouseAdapter{
 
     private static final Border BORDER = BorderFactory.createLineBorder(Color.black); 

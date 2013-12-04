@@ -37,7 +37,7 @@ public class JMazeWorker extends SwingWorker<MyArrayList<Cell>, Void> implements
     }
 
     @Override
-    public MyArrayList doInBackground() throws Exception {
+    public MyArrayList doInBackground(){
         try {
             this.gui.setEnabled(false);
             Pathfinder pathfinder = new Astar(this.heuristic);

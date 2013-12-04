@@ -77,7 +77,8 @@ public class AstarTest {
     }
     
     //NOTE: this test is to show that Semi-Euclidean method for distance-estimation
-    //is, although useful, NOT a real heuristic in the sence of the definition of a heuristic.
+    //is, although useful, NOT a real heuristic in the sence of the definition of a heuristic finding
+    //always the shortest path.
     @Test
     public void semiEuclideanHeuristicIsNotARealHeuristic(){
         System.out.println("Semi-Euclidean:");

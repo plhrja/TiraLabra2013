@@ -9,12 +9,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 
+/**
+ * An extension of the {@code MazeMenuAdapter} class where the functionalities of the
+ * predefined menu items are defined.
+ * @author Easysimulation
+ * @see JMazeMenu
+ * @see MPVGUI
+ */
 public class JMazeMenu extends MazeMenuAdapter {
 
     private CellMazeGenerator primGenerator;
     private CellMazeGenerator DFSGenerator;
     private MPVGUI gui;
 
+    /**
+     * Constructor constructs a new {@code JMazeMenu} object to the GUI specified in the 
+     * parameter field.
+     * @param gui the GUI to whoch the {@code JMazeMenu} object is created.
+     */
     public JMazeMenu(MPVGUI gui) {
         super();
         this.gui = gui;
