@@ -28,12 +28,12 @@ public class Astar extends Pathfinder {
         Cell head = null;
 
         initCells(start, finish, grid);
-        queue.addAll(NeighbourTools.getOpenNeighboursToCoordinates(grid, start));
+        queue.addAll(NeighbourTools.getOpenNeighboursToCoordinatesAndSetDistAndParent(grid, start));
 
         while (!queue.isEmpty() && head != finish) {
             head = queue.poll();
             if (head != finish) {
-                queue.addAll(NeighbourTools.getOpenNeighboursToCoordinates(grid, head));
+                queue.addAll(NeighbourTools.getOpenNeighboursToCoordinatesAndSetDistAndParent(grid, head));
                 if (delay != 0) {
                     try {
                         Thread.sleep(delay);

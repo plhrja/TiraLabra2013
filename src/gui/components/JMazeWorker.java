@@ -18,6 +18,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingWorker;
 
+/**
+ * An extension of the {@code SwingWorker} class that handles the updating of the 
+ * {@code MPVGUI} object when a pathsolving algorithm is running.
+ * @author rsirvio
+ * @see SwingWorker
+ * @see Pathfinder
+ * @see Observer
+ * @see MPVGUI
+ */
 public class JMazeWorker extends SwingWorker<MyArrayList<Cell>, Void> implements Observer {
 
     private MPVGUI gui;
@@ -25,6 +34,11 @@ public class JMazeWorker extends SwingWorker<MyArrayList<Cell>, Void> implements
     private Heuristic heuristic;
     private int delay;
 
+    /**
+     * Constructs a new {@code JMazeWorker} object that handles the updating of the {@code MPVGUI}
+     * object defined in the parameter,
+     * @param gui the {@code MPVGUI} object that is updated by this {@code JMazeWorker} object.
+     */
     public JMazeWorker(MPVGUI gui) {
         this.gui = gui;
         String heuristicsString = this.gui.getSolverPanel().getHeuristicsValue();

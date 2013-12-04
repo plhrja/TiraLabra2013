@@ -5,6 +5,13 @@ import cell.Cell;
 import cell.grid.CellGrid;
 import java.util.Random;
 
+/**
+ * A collection of static methods used in analysis of neighbouring {@code Cell} objects nested in a
+ * {@code CellGrid} object.
+ * @author rsirvio
+ * @see CellGrid
+ * @see Cell
+ */
 public class NeighbourTools {
 
     private static boolean insideBoundaries(int row, int col, CellGrid grid) {
@@ -13,6 +20,18 @@ public class NeighbourTools {
                 && col < grid.getColumnLength() - 1;
     }
 
+    /**
+     * Adds neighbouring {@code Cell} objects to the {@code Cell} object located at the position defined by
+     * the row and column positions in the parameters into a list (defined in the parameters) that are not marked
+     * as a part of the maze (i.e. that are unconnected). Also adds the neighbouring {@code Cell} objects relative direction
+     * to the {@code Cell} objects located at the position defined by the row and column positions in the parameters
+     * neighbouring mazes directions list.
+     * @param row the row position of the {@code Cell} object thats' neighbouring cells are analysed.
+     * @param col the column position of the {@code Cell} object thats' neighbouring cells are analysed.
+     * @param neighbourCells the list into which the neighbouring {@code Cell} objects are added.
+     * @param grid the {@code CellGrid} object in which the {@code Cell} objects are nested
+     * @param steps the distance between the neighbouring {@code Cell} objects.
+     */
     public static void addInMazeNeighboursToCoordinates(int row, int col, MyArrayList<Cell> neighbourCells, CellGrid grid, int steps) {
         if (insideBoundaries(row + steps, col, grid) && !grid.getCell(row + steps, col).isInMaze()) {
             neighbourCells.add(grid.getCell(row + steps, col));
@@ -32,6 +51,14 @@ public class NeighbourTools {
         }
     }
 
+    /**
+     * Connects the {@code Cell} object defined in the parameters located in the {@code CellGrid} object
+     * to the maze to be generated, i.e. marking it as a part of the maze and opening the {@code Cell} object
+     * between the this current {@code Cell} object and a neighbouring {@code Cell} object that is already connected
+     * to the maze.
+     * @param cell the {@code Cell} object to be connected.
+     * @param grid the {@code CellGrid} object where the defined {@code Cell} object resides.
+     */
     public static void connectNeighbourToMaze(Cell cell, CellGrid grid) {
         char direction = cell.getHasInMazeNeighboursIn().get(new Random().nextInt(cell.getHasInMazeNeighboursIn().size()));
         int row = cell.getRow();
@@ -57,6 +84,10 @@ public class NeighbourTools {
         grid.getCell(row, column).InMaze(true);
     }
 
+    /**
+     * Essentially the same as the {@code connectNeighbourToMaze} method, but doing it to
+     * two predefined {@code Cell} objects instead of doing it pseudo-randomly.
+     */
     public static void connect(Cell cell1, Cell cell2, CellGrid grid) {
         int row = (cell1.getRow() - cell2.getRow() == 0)
                 ? cell1.getRow() : Math.min(cell1.getRow(), cell2.getRow()) + 1;
@@ -65,7 +96,15 @@ public class NeighbourTools {
         grid.getCell(row, col).isSolid(false);
     }
 
-    public static MyArrayList getOpenNeighboursToCoordinates(CellGrid grid, Cell parent) {
+    /**
+     * A method intended to be used by a pathsolving algorithm. It adds all neighbouring {@code Cell} objects, that
+     * have either not been processed before or would have a lower cost to the beginning after the addition,
+     * to a list and finally returns the list.
+     * @param grid the {@code CellGrid} object where the {@code Cell} objects are nested.
+     * @param parent the {@code Cell} object thats' neighbours are analysed.
+     * @return a list containing the appropriate neighbouring {@code Cell} objects.
+     */
+    public static MyArrayList getOpenNeighboursToCoordinatesAndSetDistAndParent(CellGrid grid, Cell parent) {
         MyArrayList<Cell> openNeighbours = new MyArrayList<>();
         int row = parent.getRow();
         int column = parent.getColumn();

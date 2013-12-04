@@ -5,24 +5,21 @@ import java.awt.event.ActionListener;
 
 
 /**
- *
+ * An extension of the {@code PopupAdapter} class where the functionalities of the
+ * predefined menu items are implemented.
  * @author Easysimulation
+ * @see PopupAdapter
  */
 public class JCellPopup extends PopupAdapter{
     
     /**
-     *
-     * @param cell
-     * @param grid
+     * 
+     * @see PopupAdapter
      */
     public JCellPopup(JCell cell, JCellGrid grid){
         super(cell, grid);
     }
     
-    /**
-     *
-     * @return
-     */
     @Override
     public ActionListener setStartFunction(){
         final JCellGrid grid = this.getGrid();
@@ -41,10 +38,6 @@ public class JCellPopup extends PopupAdapter{
         };
     }
     
-    /**
-     *
-     * @return
-     */
     @Override
     public ActionListener setFinishFunction(){
         final JCellGrid grid = this.getGrid();

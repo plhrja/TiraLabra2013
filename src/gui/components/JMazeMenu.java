@@ -11,7 +11,7 @@ import java.awt.event.WindowEvent;
 
 /**
  * An extension of the {@code MazeMenuAdapter} class where the functionalities of the
- * predefined menu items are defined.
+ * predefined menu items are implemented.
  * @author Easysimulation
  * @see JMazeMenu
  * @see MPVGUI
