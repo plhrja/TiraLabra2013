@@ -45,6 +45,7 @@ public class MPVGUI extends JFrame {
         this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
