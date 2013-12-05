@@ -8,7 +8,7 @@ import javax.swing.JPopupMenu;
 /**
  * A subclass of the {@code JPopupMenu} class intended to be used as an aid in defining
  * the starting and finishing points of a path with the {@code JCellMouseListener} within 
- * the pathfinding visualization GUI. Therefore this popup menu will contain only two items:
+ * the pathfinding visualisation GUI. Therefore this popup menu will contain only two items:
  * "Set cell as start" and "Set cell as finish".
  * This is an adapter implementation in the sense that
  * this class only defines the layout of the popup menu; the functionalities

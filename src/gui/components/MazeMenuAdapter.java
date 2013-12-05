@@ -9,7 +9,7 @@ import javax.swing.JMenuItem;
 
 /**
  * A subclass of the {@code JMenuBar} class intended to be used as a menubar used for selecting 
- * maze generation algorithms and maze sizes within the pathfinding visualization GUI. This is an adapter
+ * maze generation algorithms and maze sizes within the pathfinding visualisation GUI. This is an adapter
  * implementation in the sense that this class only defines the layout of the menubar; the functionalities
  * are to be implemented by an extension of this class.
  * @author Easysimulation

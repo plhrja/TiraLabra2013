@@ -25,7 +25,7 @@ public class JMazeMenu extends MazeMenuAdapter {
     /**
      * Constructor constructs a new {@code JMazeMenu} object to the GUI specified in the 
      * parameter field.
-     * @param gui the GUI to whoch the {@code JMazeMenu} object is created.
+     * @param gui the GUI to which the {@code JMazeMenu} object is created.
      */
     public JMazeMenu(MPVGUI gui) {
         super();
