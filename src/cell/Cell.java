@@ -56,7 +56,7 @@ public class Cell implements Comparable<Cell>{
 
     /**
      * Returns cell-type (solid or open)
-     * @return{@code true} if solid, {@code false} if open.
+     * @return {@code true} if solid, {@code false} if open.
      */
     public boolean isSolid() {
         return solid;

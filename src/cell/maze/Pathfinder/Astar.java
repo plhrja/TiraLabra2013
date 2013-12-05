@@ -4,12 +4,8 @@ import MyArrayList.MyArrayList;
 import MyPriorityQueue.MyPriorityQueue;
 import cell.Cell;
 import cell.grid.CellGrid;
-import cell.grid.CellGridPrinter;
-import cell.maze.CellMazeGenerator;
-import cell.maze.PrimCellMazeGenerator;
 import cell.neighbourTools.NeighbourTools;
 import heuristics.Heuristic;
-import heuristics.ManhattanHeuristic;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

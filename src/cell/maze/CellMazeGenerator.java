@@ -27,10 +27,9 @@ public interface CellMazeGenerator {
     
     /**
      * Returns a {@code CellGrid} object representation of a maze. 
-     * @param rowLength row length of the maze
-     * @param columnLength column length of the maze
+     * @param grid a {@code CellGrid} to which the algorithm is applied
      * @return {@code CellGrid} representation of a maze.
      */
-    public CellGrid generateCustomMaze(int rowLength, int columnLength);
+    public CellGrid generateCustomMaze(CellGrid grid);
 
 }

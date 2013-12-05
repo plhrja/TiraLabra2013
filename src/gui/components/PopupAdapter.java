@@ -57,7 +57,7 @@ public class PopupAdapter extends JPopupMenu {
     /**
      * Returns the {@code JCellGrid} object in which the predefined manipulatable {@code JCell}
      * object resides.
-     * @returnthe {@code JCellGrid} object in which the predefined manipulatable {@code JCell} object resides.
+     * @return the {@code JCellGrid} object in which the predefined manipulatable {@code JCell} object resides.
      */
     public JCellGrid getGrid() {
         return grid;

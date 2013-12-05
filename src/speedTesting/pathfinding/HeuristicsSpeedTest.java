@@ -48,7 +48,8 @@ public class HeuristicsSpeedTest implements Observer {
 
         int sumOfSteps = 0;
         for (int i = 0; i <= repetitions; i++) {
-            CellGrid maze = this.generator.generateCustomMaze(131, 131);
+            CellGrid grid = new CellGrid(131, 131);
+            CellGrid maze = this.generator.generateCustomMaze(grid);
             for (int j = 0; j < this.heuristics.length; j++) {
                 Pathfinder astar = new Astar(this.heuristics[j]);
                 astar.addObserver(this);

@@ -67,8 +67,8 @@ public class DFSCellMazeGenerator implements CellMazeGenerator{
     }
 
     @Override
-    public CellGrid generateCustomMaze(int rowLength, int columnLength) {
-        return generateDFSMaze(new CellGrid(rowLength, columnLength));
+    public CellGrid generateCustomMaze(CellGrid grid) {
+        return generateDFSMaze(grid);
     }
     
 }

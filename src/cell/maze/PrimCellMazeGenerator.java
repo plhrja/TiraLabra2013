@@ -58,8 +58,8 @@ public class PrimCellMazeGenerator implements CellMazeGenerator{
     }
     
     @Override
-    public CellGrid generateCustomMaze(int rowLength, int columnLength) {
-        return generatePrimMaze(new CellGrid(rowLength, columnLength));
+    public CellGrid generateCustomMaze(CellGrid grid) {
+        return generatePrimMaze(grid);
     }
     
     //test-main

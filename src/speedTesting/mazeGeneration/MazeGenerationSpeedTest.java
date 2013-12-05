@@ -1,5 +1,6 @@
 package speedTesting.mazeGeneration;
 
+import cell.grid.CellGrid;
 import cell.maze.CellMazeGenerator;
 import cell.maze.DFSCellMazeGenerator;
 import cell.maze.PrimCellMazeGenerator;
@@ -55,9 +56,10 @@ public class MazeGenerationSpeedTest {
         
         for (int i = 0; i < testSizes.size(); i++) {
             int size = testSizes.get(i) + 1;
+            CellGrid grid = new CellGrid(size, size);
             
             long startTime = System.currentTimeMillis();
-            this.mazeGenerator.generateCustomMaze(size, size);
+            this.mazeGenerator.generateCustomMaze(grid);
             long finishTime = System.currentTimeMillis() - startTime;
             
             String print = size + "\t" + finishTime;
@@ -68,7 +70,7 @@ public class MazeGenerationSpeedTest {
     }
     
     public static void main(String[] args) {
-        MazeGenerationSpeedTest test = new MazeGenerationSpeedTest("primGen_speedTest3.dat", new PrimCellMazeGenerator());
-        test.test(100, 1500, 10);
+        MazeGenerationSpeedTest test = new MazeGenerationSpeedTest("primGen_speedTest[corrected].dat", new PrimCellMazeGenerator());
+        test.test(100, 950, 10);
     }
 }

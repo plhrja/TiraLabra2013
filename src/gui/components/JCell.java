@@ -83,7 +83,7 @@ public class JCell extends JLabel {
      * when solving paths in a {@code JCellGrid}, or more explicitly, this is to note that the solving
      * algorithm has processed this current {@code JCell} object.
      * @return {@code true} if this {@code JCell} object is a processed, {@code false} otherwise.
-     * @return
+     * @return {@code true} if this {@code JCell} object is a processed, {@code false} otherwise
      */
     public boolean isProcessed() {
         return processed;
